@@ -36,15 +36,6 @@ public class GameActivity extends AppCompatActivity {
         // TODO Set listener to play sound on successful moves
     }
 
-    /* // TODO
-        Get game data
-        store board into bundle and read it back (Serializable)
-        Open dialog if leaving
-        Store pegs left, name and date in DB
-        Play music
-        make pop sound on each move
-     */
-
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
