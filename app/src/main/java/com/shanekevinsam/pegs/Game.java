@@ -13,15 +13,6 @@ public class Game {
     private static final String TAG = "Game";
     private Board board = null;
 
-    /*
-        Check if move is legit (Start, end)
-            start = full, (start.x+end.x)/2 (start.y+end.y)/2) = full, end = empty
-        perform move -> remove start, mid, and add end
-        Check for no more legal moves after each legit move
-        Keep track of number of pegs left
-        Reset game
-     */
-
     /**
      * Instantiates game board with random peg removed
      */
