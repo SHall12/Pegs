@@ -119,8 +119,8 @@ public class GameActivity extends AppCompatActivity {
         // TODO Fill view with game info
         // For each peg in board, highlight boardView
         // Update number of pegs left
-        for (int y = 0; y <= 3; ++y){
-            for (int x = 0; x <= 3 - y; ++x){
+        for (int y = 0; y <= 4; ++y){
+            for (int x = 0; x <= 4 - y; ++x){
                 Coordinate coord = new Coordinate(x, y);
                 if(game.isPegAt(coord)){
                     ((Button)findViewById(coordToButtonID.get(coord))).setText("1");
@@ -147,28 +147,16 @@ public class GameActivity extends AppCompatActivity {
      */
     private void initializeMaps(){
         coordToButtonID = new HashMap<>();
-        coordToButtonID.put(new Coordinate(0,0), R.id.btn_00);
-        coordToButtonID.put(new Coordinate(1,0), R.id.btn_10);
-        coordToButtonID.put(new Coordinate(2,0), R.id.btn_20);
-        coordToButtonID.put(new Coordinate(3,0), R.id.btn_30);
-        coordToButtonID.put(new Coordinate(0,1), R.id.btn_01);
-        coordToButtonID.put(new Coordinate(1,1), R.id.btn_11);
-        coordToButtonID.put(new Coordinate(2,1), R.id.btn_21);
-        coordToButtonID.put(new Coordinate(0,2), R.id.btn_02);
-        coordToButtonID.put(new Coordinate(1, 2), R.id.btn_12);
-        coordToButtonID.put(new Coordinate(0, 3), R.id.btn_03);
-
         buttonIDToCoord = new HashMap<> ();
-        buttonIDToCoord.put(R.id.btn_00, new Coordinate(0,0));
-        buttonIDToCoord.put(R.id.btn_10, new Coordinate(1,0));
-        buttonIDToCoord.put(R.id.btn_20, new Coordinate(2,0));
-        buttonIDToCoord.put(R.id.btn_30, new Coordinate(3,0));
-        buttonIDToCoord.put(R.id.btn_01, new Coordinate(0,1));
-        buttonIDToCoord.put(R.id.btn_11, new Coordinate(1,1));
-        buttonIDToCoord.put(R.id.btn_21, new Coordinate(2,1));
-        buttonIDToCoord.put(R.id.btn_02, new Coordinate(0,2));
-        buttonIDToCoord.put(R.id.btn_12, new Coordinate(1,2));
-        buttonIDToCoord.put(R.id.btn_03, new Coordinate(0,3));
+
+        for (int y = 0; y <= 4; ++y ){
+            for (int x = 0; x <= 4 - y; ++x){
+                int btnId = getResources().getIdentifier(
+                        "btn_" + Integer.toString(x) + Integer.toString(y), "view", "com.shanekevinsam.pegs");
+                coordToButtonID.put(new Coordinate(x,y), btnId);
+                buttonIDToCoord.put(btnId, new Coordinate(x,y));
+            }
+        }
     }
 
 }
