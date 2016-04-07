@@ -1,5 +1,6 @@
 package com.shanekevinsam.pegs;
 
+import android.media.MediaPlayer;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,12 +15,11 @@ import java.util.Map;
 public class GameActivity extends AppCompatActivity {
 
     private Game game;
-
     private Map<Coordinate, Integer> coordToButtonID;
     private Map<Integer, Coordinate> buttonIDToCoord;
-
-    Coordinate startCoord;
-    Coordinate endCoord;
+    private Coordinate startCoord;
+    private Coordinate endCoord;
+    private MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,8 @@ public class GameActivity extends AppCompatActivity {
         // TODO Set listeners to update views
 
         // TODO Check if music selected, then play it
+        initializeMusic();
+
         // TODO Set listener to play sound on successful moves
     }
 
@@ -63,11 +65,20 @@ public class GameActivity extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable("board", game.getBoard());
+        if (mediaPlayer != null){
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
     private void initializeGame(){
         // TODO Check settings for default peg to remove
         game = new Game();
+    }
+
+    private void initializeMusic(){
+        mediaPlayer = MediaPlayer.create(this, R.raw.bensound_theelevatorbossanova);
+        mediaPlayer.start();
     }
 
     /**
@@ -82,9 +93,10 @@ public class GameActivity extends AppCompatActivity {
      * Open dialog with game info, prompt user to play again
      */
     private void endGame(){
-        // TODO Store name + game info + date into database
+        // TODO if pegsLeft == 1, Open dialog to get name, store it and date into database
         // TODO Prompt to restart game
-        Toast.makeText(getApplicationContext(), "No moves left", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), game.getNumPegsLeft() + " pegs left", Toast.LENGTH_LONG).show();
+        restartGame();
     }
 
     // TODO Implement boardClicked
@@ -123,9 +135,9 @@ public class GameActivity extends AppCompatActivity {
             for (int x = 0; x <= 4 - y; ++x){
                 Coordinate coord = new Coordinate(x, y);
                 if(game.isPegAt(coord)){
-                    ((Button)findViewById(coordToButtonID.get(coord))).setText("1");
+                    ((Button)findViewById(coordToButtonID.get(coord))).setText("P");
                 } else {
-                    ((Button)findViewById(coordToButtonID.get(coord))).setText("0");
+                    ((Button)findViewById(coordToButtonID.get(coord))).setText("");
                 }
             }
         }
@@ -158,5 +170,4 @@ public class GameActivity extends AppCompatActivity {
             }
         }
     }
-
 }
