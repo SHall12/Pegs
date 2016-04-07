@@ -43,7 +43,8 @@ public class Board {
         }
     }
 
-    /**Initialize board given a state
+    /**
+     * Initialize board given a state
      *
      * @param board 3x3 boolean array
      * @throws IllegalArgumentException
@@ -54,6 +55,13 @@ public class Board {
                 && board[3].length >= 2
                 && board[4].length >= 1) {
             this.board = board;
+            for (int i = 0; i <= 4; ++i) {
+                for (int j = 0; j <= 4 - i; ++j) {
+                    if (this.board[i][j]) {
+                        ++pegsLeft;
+                    }
+                }
+            }
         } else {
             throw new IllegalArgumentException("Board not large enough.");
         }
