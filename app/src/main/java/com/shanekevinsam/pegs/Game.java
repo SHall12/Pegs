@@ -54,6 +54,13 @@ public class Game {
     }
 
     /**
+     * @return 2d boolean array representing game state
+     */
+    public boolean[][] getBoard(){
+        return board.getBoard();
+    }
+
+    /**
      * Checks if move is correct and performs changes to board
      *
      * @param start Coordinate of starting peg
