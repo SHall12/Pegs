@@ -152,7 +152,7 @@ public class GameActivity extends AppCompatActivity {
         for (int y = 0; y <= 4; ++y ){
             for (int x = 0; x <= 4 - y; ++x){
                 int btnId = getResources().getIdentifier(
-                        "btn_" + Integer.toString(x) + Integer.toString(y), "view", "com.shanekevinsam.pegs");
+                        "btn_" + Integer.toString(x) + Integer.toString(y), "id", "com.shanekevinsam.pegs");
                 coordToButtonID.put(new Coordinate(x,y), btnId);
                 buttonIDToCoord.put(btnId, new Coordinate(x,y));
             }
