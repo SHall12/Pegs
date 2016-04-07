@@ -1,7 +1,10 @@
 package com.shanekevinsam.pegs;
 
+import android.app.LoaderManager;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.CursorLoader;
+import android.content.Loader;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,11 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ScoreActivity extends AppCompatActivity {
-
+public class ScoreActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
+    private SimpleCursorAdapter mAdapter;
     SQLiteDatabase theDB;
     Long rowid;
     long currentRow;
@@ -22,60 +27,32 @@ public class ScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_score);
-       /* if (getIntent().hasExtra("rowid")) {
-            rowid = getIntent().getLongExtra("rowid", 0);
-            ContentResolver cr = getContentResolver();
+        mAdapter = new SimpleCursorAdapter(this, R.layout.list_item, null,
+                new String[]{"playerName","val"},null, 0);
 
-            Cursor c = cr.query(DbContentProvider.CONTENT_URI.buildUpon().appendPath(Long.toString(rowid)).build(),
-                    new String[] {"title","setup","punchline"},null, null, null);
-
-            if (!c.moveToFirst()) {
-                this.setTitle("Add new joke");
-                Toast.makeText(this, "Error retrieving joke.  Adding new joke, instead.", Toast.LENGTH_LONG).show();
-                rowid = null;
-            }
-            else {
-                this.setTitle("Edit joke");
-                ((EditText) findViewById(R.id.playerName)).setText(c.getString(0));
-                ((EditText) findViewById(R.id.gamename)).setText(c.getString(1));
-                ((EditText) findViewById(R.id.val)).setText(c.getString(2));
-            }
-            c.close();
-        }
-*/
-
+        ListView listView = (ListView) findViewById(R.id.Score_list);
+        listView.setAdapter(mAdapter);
+        getLoaderManager().initLoader(1, null, this);
     }
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
+        mAdapter.swapCursor(cursor);
+    }
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        mAdapter.swapCursor(null);
+    }
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        // Create a new CursorLoader with the following query parameters.
+        String where = null;
 
+        return new CursorLoader(this, DbContentProvider.CONTENT_URI,
+                new String[]{"_id", "playerName","date"}, where, null, null);
+    }
 
     @Override
     protected void onResume() {
-        super.onResume();
-       /* HighScoreDB.getInstance(this).getWritableDatabase(new HighScoreDB.OnDBReadyListener() {
-            @Override
-            public void onDBReady(SQLiteDatabase DB) {
-                // Will this.theDB work?
-                theDB = DB;
-            }
-        });
+        super.onResume();}
 
-        ContentResolver cr = this.getContentResolver();
-        Cursor c = cr.query(DbContentProvider.CONTENT_URI.buildUpon().build(),
-                new String[]{"_id", "playerName", "g", "val"}, null, null, null);
-        String pname, gameString,valString;
-
-
-        StringBuffer sb = new StringBuffer();
-        String[] columns = {"_id", "playerName", "g","val"};
-
-
-
-        while (c.moveToNext()) {
-            sb.append("id: " + c.getLong(c.getColumnIndexOrThrow("_id")));
-            sb.append(", player: " + c.getString(c.getColumnIndexOrThrow("playerName")));
-            sb.append(", game: " + c.getString(c.getColumnIndexOrThrow("g")));
-            sb.append(", val: " + c.getInt(c.getColumnIndexOrThrow("val")) + "\n");
-        }
-        c.close();*/
-    }
 
 }
