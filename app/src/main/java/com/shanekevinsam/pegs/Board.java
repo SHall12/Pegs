@@ -2,8 +2,6 @@ package com.shanekevinsam.pegs;
 
 import android.util.Log;
 
-// TODO GAME HAS 5 SIDES, NOT 4!!!
-
 /**
  * Stores game state for peg game in 2d boolean array
  *  True: Peg

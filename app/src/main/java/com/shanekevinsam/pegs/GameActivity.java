@@ -19,7 +19,7 @@ public class GameActivity extends AppCompatActivity {
     private Map<Integer, Coordinate> buttonIDToCoord;
     private Coordinate startCoord;
     private Coordinate endCoord;
-    private MediaPlayer mediaPlayer;
+    private static MediaPlayer mediaPlayer = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +32,7 @@ public class GameActivity extends AppCompatActivity {
         }
         initializeMaps();
         updateBoard();
-        // TODO Set listeners to set game info
-        // TODO Set listeners to update views
-
-        // TODO Check if music selected, then play it
         initializeMusic();
-
         // TODO Set listener to play sound on successful moves
     }
 
@@ -62,6 +57,21 @@ public class GameActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        initializeMusic();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(mediaPlayer != null){
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putSerializable("board", game.getBoard());
@@ -77,8 +87,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initializeMusic(){
-        mediaPlayer = MediaPlayer.create(this, R.raw.bensound_theelevatorbossanova);
-        mediaPlayer.start();
+        // TODO use singleton pattern so only 1 mediaPlayer used at a time
+        // TODO check shared preferences if music selected
+        if(mediaPlayer == null){
+            mediaPlayer = MediaPlayer.create(this, R.raw.bensound_theelevatorbossanova);
+            mediaPlayer.start();
+        }
     }
 
     /**
@@ -99,8 +113,8 @@ public class GameActivity extends AppCompatActivity {
         restartGame();
     }
 
-    // TODO Implement boardClicked
     public void boardClicked(View v){
+        // TODO handle null pointer exceptions
         if (startCoord == null){
             Coordinate coord = buttonIDToCoord.get(v.getId());
             if (game.isPegAt(coord)) {
@@ -128,7 +142,7 @@ public class GameActivity extends AppCompatActivity {
      * Updates views to represent board state
      */
     private void updateBoard(){
-        // TODO Fill view with game info
+        // TODO handle null pointer exceptions
         // For each peg in board, highlight boardView
         // Update number of pegs left
         for (int y = 0; y <= 4; ++y){
@@ -142,7 +156,6 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
-        //TODO update numPegsLeft when updating board (fix null pointer)
         TextView pegsLeft = ((TextView)findViewById(R.id.txt_PegsLeft));
         pegsLeft.setText(Integer.toString(game.getNumPegsLeft()));
     }
