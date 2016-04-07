@@ -21,6 +21,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, SettingsActivity.class));
     }
 
+    public void startScoreActivity(View v){
+        startActivity(new Intent(this, ScoreActivity.class));
+    }
+
     // TODO Start DB + Highscores activity
     // TODO Create DB w/ name, score and date
     // TODO Start content content provider
