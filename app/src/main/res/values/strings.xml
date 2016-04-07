@@ -15,6 +15,15 @@
 
     <string name="title_activity_settings">Settings</string>
 
+
+    <!-- Strings related to HighScores -->
+
+    <string name="score_activity_name">Name</string>
+
+    <string name="score_activity_date">Date</string>
+
+
+
     <!-- GOTTA DO SOMETHING WITH THIS -->
 
     <!-- Strings related to Settings -->
