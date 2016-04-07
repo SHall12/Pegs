@@ -27,18 +27,15 @@ public class Game {
      */
     public Game(){
         Random rand = new Random();
-        int x = rand.nextInt(4);
-        int y = rand.nextInt(4-x);
-        if (x == 1 && y == 1){
-            y = 0;
-        }
+        int x = rand.nextInt(5);
+        int y = rand.nextInt(5-x);
         board = new Board(new Coordinate(x,y));
     }
 
     /**
      * Instantiates game board with select peg removed
      *
-     * @param coord
+     * @param coord Initially empty space
      */
     public Game(Coordinate coord){
         board = new Board(coord);
@@ -50,29 +47,17 @@ public class Game {
         } catch (IllegalArgumentException e){
             Log.d(TAG, "Bad array passed to Game()", e);
             Random rand = new Random();
-            int x = rand.nextInt(4);
-            int y = rand.nextInt(4-x);
-            if (x == 1 && y == 1){
-                y = 0;
-            }
+            int x = rand.nextInt(5);
+            int y = rand.nextInt(5-x);
             board = new Board(new Coordinate(x,y));
         }
     }
 
     /**
-     * Returns boolean array with coordinates representing pegs
-     *
-     * @return
-     */
-    public boolean[][] getBoard(){
-        return board.getBoard();
-    }
-
-    /**
      * Checks if move is correct and performs changes to board
      *
-     * @param start
-     * @param end
+     * @param start Coordinate of starting peg
+     * @param end   Coordinate of ending place
      * @return true if move successful, false otherwise
      */
     public boolean move(Coordinate start, Coordinate end){
@@ -113,12 +98,12 @@ public class Game {
      * If they are on the same row or column in the board, they should be 2 away
      * If they aren't they have to be diagonal, where somehow you get 4 from the math.
      *
-     * @param start
-     * @param end
-     * @return
+     * @param start Coordinate of first space
+     * @param end   Coordinate of second space
+     * @return  Whether or not the 2 coordinates have a single space between them
      */
     private boolean checkCorrectDistance( Coordinate start, Coordinate end){
-        if (start.getX() == end.getX()  && start.getY() == end.getY()){
+        if (start.equals(end)){
             return false;
         } else if(start.getX() == end.getX() || start.getY() == end.getY()){
             return Math.abs(start.getX() - end.getX()) + Math.abs(start.getY() - end.getY()) == 2;
@@ -131,8 +116,8 @@ public class Game {
      * Checks if peg is between 2 coords.
      * Assumes correctDistance is true!!!
      *
-     * @param start
-     * @param end
+     * @param start Coordinate of first space
+     * @param end   Coordinate of second space
      * @return True if peg present, false otherwise
      */
     private boolean checkPegBetween(Coordinate start, Coordinate end){
@@ -143,8 +128,8 @@ public class Game {
      * Calculates the peg between 2 coordinates
      * Assumes correctDistance is true!!!
      *
-     * @param start
-     * @param end
+     * @param start Coordinate of first space
+     * @param end   Coordinate of second space
      * @return {x, y}
      */
     private Coordinate calcPegBetween(Coordinate start, Coordinate end) {
@@ -161,8 +146,8 @@ public class Game {
      * @return true if there are remaining moves, false otherwise
      */
     public boolean checkForRemainingMoves(){
-        for (int y = 0; y <= 3; ++y) {
-            for (int x = 0; x <= 3 - y; ++x) {
+        for (int y = 0; y <= 4; ++y) {
+            for (int x = 0; x <= 4 - y; ++x) {
                 if (checkValidMovesFromCoord(new Coordinate(x, y))){
                     return true;
                 }
@@ -178,28 +163,28 @@ public class Game {
      * If bottom right: Check left and up to left
      * If top:          check bottom left and bottom right
      *
-     * Note: move cannot start from center
+     * Note: Center pieces overlap 2 cases
      *
-     * @param coord
+     * @param coord Coordinate to check
      * @return if there is a valid move from coordinate
      */
     private boolean checkValidMovesFromCoord(Coordinate coord){
         Log.d(TAG, "Checking valid moves from " + coord);
         int x = coord.getX();
         int y = coord.getY();
-        if (!(x == 1 && y == 1)) { //if not center
-            if (x <= 1 && y <=1){
-                if(validateMove(coord, new Coordinate(x+2, y)) || validateMove(coord, new Coordinate(x, y+2))){
-                    return true;
-                }
-            } else if ( x >= 2 && y <= 1){
-                if(validateMove(coord, new Coordinate(x-2, y)) || validateMove(coord, new Coordinate(x-2, y+2))){
-                    return true;
-                }
-            } else {
-                if(validateMove(coord, new Coordinate(x, y-2)) || validateMove(coord, new Coordinate(x+2, y-2))){
-                    return true;
-                }
+        if (x + y <= 2) {
+            if (validateMove(coord, new Coordinate(x + 2, y)) || validateMove(coord, new Coordinate(x, y + 2))) {
+                return true;
+            }
+        }
+        if (x >= 2) {
+            if (validateMove(coord, new Coordinate(x - 2, y)) || validateMove(coord, new Coordinate(x - 2, y + 2))) {
+                return true;
+            }
+        }
+        if (y >= 2) {
+            if(validateMove(coord, new Coordinate(x, y-2)) || validateMove(coord, new Coordinate(x+2, y-2))){
+                return true;
             }
         }
         return false;
