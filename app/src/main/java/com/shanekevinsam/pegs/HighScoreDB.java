@@ -36,7 +36,7 @@ public class HighScoreDB  extends SQLiteOpenHelper {
                     "date DATE )";
 
     private static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS games";
+            "DROP TABLE IF EXISTS score";
 
     @Override
     public void onCreate(SQLiteDatabase db) {

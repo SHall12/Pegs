@@ -205,13 +205,17 @@ public class GameActivity extends AppCompatActivity {
     private void updateHighScores(String name) {
         //TODO figure out why this is throwing an error
         ContentResolver cr = getContentResolver();
-        Date date = new Date();
         ContentValues values = new ContentValues();
+        Date date = new Date();
         values.put("playerName", name);
-        values.put("date", date.toString());
+        values.put("date", date.toString().substring(0, 10));
         try {
-            cr.insert(DbContentProvider.CONTENT_URI, values);
-            Log.d(TAG, "Added " + name + " and " + date.toString() + " to database");
+            if (rowid == null) {
+                cr.insert(DbContentProvider.CONTENT_URI, values);
+            } else {
+                cr.update(DbContentProvider.CONTENT_URI.buildUpon().appendPath(Long.toString(rowid)).build(), values, null, null);
+                Log.d(TAG, "Added " + name + " and " + date.toString().substring(0, 10) + " to database");
+            }
         } catch (SQLException e) {
             Log.d(TAG, "Error updating database", e);
         }

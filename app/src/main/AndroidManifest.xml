@@ -23,6 +23,7 @@
         <provider
             android:authorities="com.shavekevinsam.pegs"
             android:name=".DbContentProvider"
+            android:enabled="true"
             android:exported="false">
         </provider>
     </application>

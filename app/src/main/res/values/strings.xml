@@ -83,9 +83,12 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-
+    <!-- strings for highscores         -->
     <string name="game_restart">Restart</string>
 
     <string name="game_quit">Quit</string>
-    -->
+    <string name="game_getName_header">Enter your name</string>
+
+    <string name="game_getName">ok</string>
+
 </resources>

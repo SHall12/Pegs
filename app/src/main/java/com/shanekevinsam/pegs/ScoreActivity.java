@@ -22,25 +22,25 @@ public class ScoreActivity extends AppCompatActivity implements LoaderManager.Lo
     SQLiteDatabase theDB;
     Long rowid;
     long currentRow;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_score);
         mAdapter = new SimpleCursorAdapter(this, R.layout.list_item, null,
-                new String[]{"playerName","val"},null, 0);
+                new String[]{"playerName","date"},new int[]{R.id.score_name_info,R.id.score_date_info}, 0);
+
 
         ListView listView = (ListView) findViewById(R.id.Score_list);
         listView.setAdapter(mAdapter);
         getLoaderManager().initLoader(1, null, this);
     }
 
+
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
         mAdapter.swapCursor(cursor);
     }
-
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
         mAdapter.swapCursor(null);
@@ -55,6 +55,7 @@ public class ScoreActivity extends AppCompatActivity implements LoaderManager.Lo
 
     @Override
     protected void onResume() {
-        super.onResume();
-    }
+        super.onResume();}
+
+
 }
