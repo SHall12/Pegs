@@ -106,7 +106,7 @@ public class GameActivity extends AppCompatActivity {
      */
     private void endGame() {
         if (game.getNumPegsLeft() == 1) {
-            this.updateHighSchores();
+            this.updateHighScores();
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -198,7 +198,7 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void updateHighSchores() {
+    private void updateHighScores() {
         //TODO figure out why this is throwing an error
         ContentResolver cr = getContentResolver();
         Date date = new Date();
