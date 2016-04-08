@@ -43,7 +43,7 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         if (savedInstanceState != null) {
-            game = new Game((boolean[][]) savedInstanceState.getSerializable("board"));
+            game = new Game((boolean[][])savedInstanceState.getSerializable("board"));
         } else {
             initializeGame();
         }
@@ -60,7 +60,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         if (savedInstanceState != null) {
-            game = new Game((boolean[][]) savedInstanceState.getSerializable("board"));
+            game = new Game((boolean[][])savedInstanceState.getSerializable("board"));
         } else {
             game = new Game();
         }
