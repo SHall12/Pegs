@@ -25,6 +25,11 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+        <provider
+            android:name="com.shanekevinsam.pegs.DbContentProvider"
+            android:authorities="com.shanekevinsam.pegs"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>

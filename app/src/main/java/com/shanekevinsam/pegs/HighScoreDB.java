@@ -13,7 +13,7 @@ public class HighScoreDB  extends SQLiteOpenHelper {
         public void onDBReady(SQLiteDatabase theDB);
     }
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "score.db";
 
     private static HighScoreDB theDb;
@@ -36,7 +36,7 @@ public class HighScoreDB  extends SQLiteOpenHelper {
                     "date DATE )";
 
     private static final String SQL_DELETE_ENTRIES =
-            "DROP TABLE IF EXISTS games";
+            "DROP TABLE IF EXISTS score";
 
     @Override
     public void onCreate(SQLiteDatabase db) {

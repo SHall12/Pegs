@@ -14,7 +14,7 @@ import android.support.annotation.NonNull;
 public class DbContentProvider extends ContentProvider {
 
     private HighScoreDB theDB;
-    private static final String AUTHORITY = "com.shavekevinsam.pegs";
+    private static final String AUTHORITY = "com.shanekevinsam.pegs";
     private static final String BASE_PATH = "score";
     public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY + "/" + BASE_PATH);
 

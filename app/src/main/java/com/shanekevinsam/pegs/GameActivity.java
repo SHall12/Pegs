@@ -128,10 +128,10 @@ public class GameActivity extends AppCompatActivity {
                 restartGame();
             }
         });
-        builder.setNegativeButton(R.string.game_quit, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.game_restart, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-               finish();
-        }
+                finish();
+            }
         });
         AlertDialog dialog = builder.create();
         dialog.show();
@@ -213,14 +213,21 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateHighSchores() {
-        //TODO figure out why this is throwing an error
+
+
         ContentResolver cr = getContentResolver();
-        Date date = new Date();
+
         ContentValues values = new ContentValues();
+        Date date = new Date();
         values.put("playerName", "kevin");
         values.put("date", date.toString());
         try {
-            cr.insert(DbContentProvider.CONTENT_URI, values);
+            if (rowid == null) {
+
+                cr.insert(DbContentProvider.CONTENT_URI, values);
+            } else {
+                cr.update(DbContentProvider.CONTENT_URI.buildUpon().appendPath(Long.toString(rowid)).build(), values, null, null);
+            }
             finish();
         } catch (SQLException e) {
             Toast.makeText(this, "Error updating database.", Toast.LENGTH_LONG).show();
