@@ -128,7 +128,7 @@ public class GameActivity extends AppCompatActivity {
                 restartGame();
             }
         });
-        builder.setNegativeButton(R.string.game_restart, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.game_quit, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 finish();
             }
@@ -220,7 +220,7 @@ public class GameActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         Date date = new Date();
         values.put("playerName", "kevin");
-        values.put("date", date.toString());
+        values.put("date", date.toString().substring(0,10));
         try {
             if (rowid == null) {
 
