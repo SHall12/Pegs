@@ -7,17 +7,12 @@ import android.content.DialogInterface;
 import android.database.SQLException;
 import android.media.MediaPlayer;
 import android.net.Uri;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.Date;
 import java.util.HashMap;
@@ -32,11 +27,6 @@ public class GameActivity extends AppCompatActivity {
     private Coordinate endCoord;
     private static MediaPlayer mediaPlayer = null;
     Long rowid;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +41,6 @@ public class GameActivity extends AppCompatActivity {
         updateBoard();
         initializeMusic();
         // TODO Set listener to play sound on successful moves
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     @Override
@@ -137,7 +124,6 @@ public class GameActivity extends AppCompatActivity {
         dialog.show();
 
         Toast.makeText(getApplicationContext(), game.getNumPegsLeft() + " pegs left", Toast.LENGTH_LONG).show();
-
     }
 
     public void boardClicked(View v) {
@@ -184,7 +170,7 @@ public class GameActivity extends AppCompatActivity {
             }
         }
 
-        TextView pegsLeft = ((TextView) findViewById(R.id.txt_PegsLeft));
+        TextView pegsLeft = ((TextView)findViewById(R.id.txt_PegsLeft));
         pegsLeft.setText(Integer.toString(game.getNumPegsLeft()));
     }
 
@@ -225,46 +211,5 @@ public class GameActivity extends AppCompatActivity {
         } catch (SQLException e) {
             Toast.makeText(this, "Error updating database.", Toast.LENGTH_LONG).show();
         }
-    }
-
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Game Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.shanekevinsam.pegs/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Game Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.shanekevinsam.pegs/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
     }
 }
