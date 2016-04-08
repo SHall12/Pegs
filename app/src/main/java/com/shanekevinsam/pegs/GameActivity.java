@@ -204,7 +204,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateHighScores(String name) {
-        //TODO figure out why this is throwing an error
         ContentResolver cr = getContentResolver();
         ContentValues values = new ContentValues();
         Date currentDate = new Date();
