@@ -9,6 +9,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import java.util.Map;
 
 public class GameActivity extends AppCompatActivity {
 
+    private static String TAG = "GameActivity";
     private Game game;
     private Map<Coordinate, Integer> coordToButtonID;
     private Map<Integer, Coordinate> buttonIDToCoord;
@@ -209,7 +211,7 @@ public class GameActivity extends AppCompatActivity {
             cr.insert(DbContentProvider.CONTENT_URI, values);
             finish();
         } catch (SQLException e) {
-            Toast.makeText(this, "Error updating database.", Toast.LENGTH_LONG).show();
+            Log.d(TAG, "Error updating database", e);
         }
     }
 }
