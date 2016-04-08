@@ -177,9 +177,9 @@ public class GameActivity extends AppCompatActivity {
             for (int x = 0; x <= 4 - y; ++x) {
                 Coordinate coord = new Coordinate(x, y);
                 if (game.isPegAt(coord)) {
-                    ((Button) findViewById(coordToButtonID.get(coord))).setText("P");
+                    ((Button)findViewById(coordToButtonID.get(coord))).setText("P");
                 } else {
-                    ((Button) findViewById(coordToButtonID.get(coord))).setText("");
+                    ((Button)findViewById(coordToButtonID.get(coord))).setText("");
                 }
             }
         }
