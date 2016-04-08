@@ -130,8 +130,8 @@ public class GameActivity extends AppCompatActivity {
         });
         builder.setNegativeButton(R.string.game_quit, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                //TODO go back to the main screen
-            }
+               finish();
+        }
         });
         AlertDialog dialog = builder.create();
         dialog.show();
