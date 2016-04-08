@@ -108,7 +108,9 @@ public class GameActivity extends AppCompatActivity {
      */
     private void endGame() {
         if (game.getNumPegsLeft() == 1) {
-            this.updateHighScores();
+            // TODO Prompt congrats message and text box for name, which autofills to name provided in setting
+            String name = "";
+            this.updateHighScores(name);
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
@@ -200,16 +202,16 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void updateHighScores() {
+    private void updateHighScores(String name) {
         //TODO figure out why this is throwing an error
         ContentResolver cr = getContentResolver();
         Date date = new Date();
         ContentValues values = new ContentValues();
-        values.put("playerName", "kevin");
+        values.put("playerName", name);
         values.put("date", date.toString());
         try {
             cr.insert(DbContentProvider.CONTENT_URI, values);
-            finish();
+            Log.d(TAG, "Added " + name + " and " + date.toString() + " to database");
         } catch (SQLException e) {
             Log.d(TAG, "Error updating database", e);
         }
