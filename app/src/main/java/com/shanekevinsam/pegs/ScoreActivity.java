@@ -35,10 +35,6 @@ public class ScoreActivity extends AppCompatActivity implements LoaderManager.Lo
         listView.setAdapter(mAdapter);
         getLoaderManager().initLoader(1, null, this);
     }
-    public void populateHighScores()
-    {
-
-    }
 
 
     @Override

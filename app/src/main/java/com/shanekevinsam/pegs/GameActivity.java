@@ -220,7 +220,7 @@ public class GameActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         Date date = new Date();
         values.put("playerName", "kevin");
-        values.put("date", date.toString().substring(0,10));
+        values.put("date", date.toString().substring(0, 10));
         try {
             if (rowid == null) {
 
@@ -233,7 +233,6 @@ public class GameActivity extends AppCompatActivity {
             Toast.makeText(this, "Error updating database.", Toast.LENGTH_LONG).show();
         }
     }
-
 
     @Override
     public void onStart() {
