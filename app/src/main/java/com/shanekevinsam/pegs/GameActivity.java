@@ -109,7 +109,7 @@ public class GameActivity extends AppCompatActivity {
     private void endGame() {
         if (game.getNumPegsLeft() == 1) {
             // TODO Prompt congrats message and text box for name, which autofills to name provided in setting
-            String name = "";
+            String name = "kevin";
             this.updateHighScores(name);
         }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
