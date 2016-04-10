@@ -29,7 +29,7 @@ public class GameActivity extends AppCompatActivity {
     private Coordinate startCoord;
     private Coordinate endCoord;
     private static MediaPlayer mediaPlayer = null;
-    Long rowid;
+    private Long rowid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
