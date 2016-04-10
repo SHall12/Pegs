@@ -29,7 +29,6 @@ public class GameActivity extends AppCompatActivity {
     private Coordinate startCoord;
     private Coordinate endCoord;
     private static MediaPlayer mediaPlayer = null;
-    private Long rowid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -211,13 +210,8 @@ public class GameActivity extends AppCompatActivity {
         values.put("playerName", name);
         values.put("date", formattedDate);
         try {
-            if (rowid == null) {
                 cr.insert(DbContentProvider.CONTENT_URI, values);
                 Log.d(TAG, "Added " + name + " and " + formattedDate + " to database");
-            } else {
-                cr.update(DbContentProvider.CONTENT_URI.buildUpon().appendPath(Long.toString(rowid)).build(), values, null, null);
-                Log.d(TAG, "Added " + name + " and " + formattedDate + " to database");
-            }
         } catch (SQLException e) {
             Log.d(TAG, "Error updating database", e);
         }
