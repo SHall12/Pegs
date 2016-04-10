@@ -3,18 +3,18 @@
     <!-- These settings headers are only used on tablets. -->
 
     <header
-        android:fragment="com.shanekevinsam.pegs.SettingsActivity$GeneralPreferenceFragment"
-        android:icon="@drawable/ic_info_black_24dp"
-        android:title="@string/pref_header_general" />
+        android:fragment="com.shanekevinsam.pegs.SettingsActivity$gamePegPreferenceFragment"
+        android:icon="@drawable/ic_game_peg"
+        android:title="@string/pref_header_game_peg" />
 
     <header
-        android:fragment="com.shanekevinsam.pegs.SettingsActivity$NotificationPreferenceFragment"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/pref_header_notifications" />
+        android:fragment="com.shanekevinsam.pegs.SettingsActivity$gameSoundPreferenceFragment"
+        android:icon="@drawable/ic_game_sounds"
+        android:title="@string/pref_header_game_sound" />
 
     <header
-        android:fragment="com.shanekevinsam.pegs.SettingsActivity$DataSyncPreferenceFragment"
-        android:icon="@drawable/ic_sync_black_24dp"
-        android:title="@string/pref_header_data_sync" />
+        android:fragment="com.shanekevinsam.pegs.SettingsActivity$highScorePreferenceFragment"
+        android:icon="@drawable/ic_high_score"
+        android:title="@string/pref_header_high_score" />
 
 </preference-headers>
