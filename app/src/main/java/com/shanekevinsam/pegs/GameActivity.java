@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -203,18 +204,19 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void updateHighScores(String name) {
-        //TODO figure out why this is throwing an error
         ContentResolver cr = getContentResolver();
         ContentValues values = new ContentValues();
-        Date date = new Date();
+        Date currentDate = new Date();
+        String formattedDate = new SimpleDateFormat("MMM d ''yy").format(currentDate);
         values.put("playerName", name);
-        values.put("date", date.toString().substring(0, 10));
+        values.put("date", formattedDate);
         try {
             if (rowid == null) {
                 cr.insert(DbContentProvider.CONTENT_URI, values);
+                Log.d(TAG, "Added " + name + " and " + formattedDate + " to database");
             } else {
                 cr.update(DbContentProvider.CONTENT_URI.buildUpon().appendPath(Long.toString(rowid)).build(), values, null, null);
-                Log.d(TAG, "Added " + name + " and " + date.toString().substring(0, 10) + " to database");
+                Log.d(TAG, "Added " + name + " and " + formattedDate + " to database");
             }
         } catch (SQLException e) {
             Log.d(TAG, "Error updating database", e);

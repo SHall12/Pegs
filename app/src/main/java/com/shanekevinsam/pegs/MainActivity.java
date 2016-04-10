@@ -25,9 +25,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, ScoreActivity.class));
     }
 
-    // TODO Start DB + Highscores activity
-    // TODO Create DB w/ name, score and date
-    // TODO Start content content provider
-
     // TODO Settings: Name, Sound:[Music, Effects], Reset score, Starting Peg:Random, 1-4
 }
