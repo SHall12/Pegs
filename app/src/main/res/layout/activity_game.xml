@@ -15,112 +15,127 @@
         android:layout_height="wrap_content" /> -->
     <GridLayout
         android:id="@+id/board"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:columnCount="9"
-        android:rowCount="5">
+        android:rowCount="6"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true">
+
         <Button
             android:id="@+id/btn_04"
             android:layout_column="4"
-            android:layout_row="0"
+            android:layout_row="1"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
+
         <Button
             android:id="@+id/btn_03"
             android:layout_column="3"
-            android:layout_row="1"
+            android:layout_row="2"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
+
         <Button
             android:id="@+id/btn_13"
             android:layout_column="5"
-            android:layout_row="1"
+            android:layout_row="2"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
+
         <Button
             android:id="@+id/btn_02"
             android:layout_column="2"
-            android:layout_row="2"
+            android:layout_row="3"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
+
         <Button
             android:id="@+id/btn_12"
             android:layout_column="4"
-            android:layout_row="2"
+            android:layout_row="3"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
+
         <Button
             android:id="@+id/btn_22"
             android:layout_column="6"
-            android:layout_row="2"
+            android:layout_row="3"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
+
         <Button
             android:id="@+id/btn_01"
             android:layout_column="1"
-            android:layout_row="3"
+            android:layout_row="4"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
+
         <Button
             android:id="@+id/btn_11"
             android:layout_column="3"
-            android:layout_row="3"
+            android:layout_row="4"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
+
         <Button
             android:id="@+id/btn_21"
             android:layout_column="5"
-            android:layout_row="3"
+            android:layout_row="4"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
+
         <Button
             android:id="@+id/btn_31"
             android:layout_column="7"
-            android:layout_row="3"
+            android:layout_row="4"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
         <Button
             android:id="@+id/btn_00"
             android:layout_column="0"
-            android:layout_row="4"
+            android:layout_row="5"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
+
         <Button
             android:id="@+id/btn_10"
             android:layout_column="2"
-            android:layout_row="4"
+            android:layout_row="5"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
+
         <Button
             android:id="@+id/btn_20"
             android:layout_column="4"
-            android:layout_row="4"
+            android:layout_row="5"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
+
         <Button
             android:id="@+id/btn_30"
             android:layout_column="6"
-            android:layout_row="4"
+            android:layout_row="5"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
         <Button
             android:id="@+id/btn_40"
             android:layout_column="8"
-            android:layout_row="4"
+            android:layout_row="5"
             android:layout_width="@dimen/sizeOfButton"
             android:text="@string/defaultPeg"
             android:onClick="boardClicked"/>
@@ -131,15 +146,16 @@
         android:text="@string/pegs_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/board"
-        android:padding="16dp"/>
+        android:padding="16dp"
+        android:layout_alignTop="@+id/txt_PegsLeft"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
     <TextView
         android:id="@+id/txt_PegsLeft"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_toEndOf="@id/txt_pegsMessage"
-        android:layout_toRightOf="@id/txt_pegsMessage"
-        android:layout_below="@id/board"
         android:text="@string/defaultPeg"
-        android:padding="16dp"/>
+        android:padding="16dp"
+        android:layout_below="@+id/board"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
