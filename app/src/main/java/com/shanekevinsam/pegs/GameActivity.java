@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.SQLException;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -108,10 +110,13 @@ public class GameActivity extends AppCompatActivity {
      */
     private void endGame() {
         if (game.getNumPegsLeft() == 1) {
-            // TODO Prompt congrats message and text box for name, which autofills to name provided in setting
-            String name = "kevin";
-            this.updateHighScores(name);
+
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            // TODO Prompt congrats message and text box for name, which autofills to name provided in settings
+            this.updateHighScores(sharedPref.getString("name",""));
+
         }
+        //TODO when the screen rotates the dialog box disappears, make that stop
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setPositiveButton(R.string.game_restart, new DialogInterface.OnClickListener() {
@@ -173,9 +178,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         }
-
-        TextView pegsLeft = ((TextView)findViewById(R.id.txt_PegsLeft));
-        pegsLeft.setText(Integer.toString(game.getNumPegsLeft()));
     }
 
     /**
