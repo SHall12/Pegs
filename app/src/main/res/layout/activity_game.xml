@@ -141,21 +141,5 @@
             android:onClick="boardClicked"/>
     </GridLayout>
 
-    <TextView
-        android:id="@+id/txt_pegsMessage"
-        android:text="@string/pegs_left"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:layout_alignTop="@+id/txt_PegsLeft"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <TextView
-        android:id="@+id/txt_PegsLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:text="@string/defaultPeg"
-        android:padding="16dp"
-        android:layout_below="@+id/board"
-        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>

@@ -174,9 +174,6 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         }
-
-        TextView pegsLeft = ((TextView)findViewById(R.id.txt_PegsLeft));
-        pegsLeft.setText(Integer.toString(game.getNumPegsLeft()));
     }
 
     /**
