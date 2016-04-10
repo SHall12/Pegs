@@ -110,7 +110,7 @@ public class GameActivity extends AppCompatActivity {
      * Open dialog with game info, prompt user to play again
      */
     private void endGame() {
-        if (game.getNumPegsLeft() >= 1) {
+        if (game.getNumPegsLeft() == 1) {
 
             SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
             // TODO Prompt congrats message and text box for name, which autofills to name provided in settings
