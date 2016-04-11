@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,7 +32,6 @@ public class GameActivity extends AppCompatActivity {
     private Coordinate startCoord;
     private Coordinate endCoord;
     private static MediaPlayer mediaPlayer = null;
-    Long rowid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +39,9 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         if (savedInstanceState != null) {
             game = new Game((boolean[][])savedInstanceState.getSerializable("board"));
+            if(!game.checkForRemainingMoves()){
+                endGame();
+            }
         } else {
             initializeGame();
         }
@@ -110,34 +113,50 @@ public class GameActivity extends AppCompatActivity {
      * Open dialog with game info, prompt user to play again
      */
     private void endGame() {
-        if (game.getNumPegsLeft() >= 1) {
-
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            // TODO Prompt congrats message and text box for name, which autofills to name provided in settings
-            this.updateHighScores(sharedPref.getString("name",""));
-
-        }
         //TODO when the screen rotates the dialog box disappears, make that stop
+        if (game.getNumPegsLeft() == 1) {
+            showCongratsDialog();
+        } else {
+            showTryAgainDialog();
+        }
+    }
+
+    private void showTryAgainDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setPositiveButton(R.string.game_restart, new DialogInterface.OnClickListener() {
+        builder.setMessage("Finished with " + game.getNumPegsLeft() + " pegs left");
+        builder.setPositiveButton(R.string.game_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 restartGame();
             }
         });
-        builder.setNegativeButton(R.string.game_quit, new DialogInterface.OnClickListener() {
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    private void showCongratsDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(R.string.game_dialog_congrats);
+        builder.setMessage(R.string.game_congrats_message);
+
+        final EditText input = new EditText(this);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(GameActivity.this);
+        input.setText(sharedPref.getString("name",""));
+        builder.setView(input);
+
+        builder.setPositiveButton(R.string.game_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
-                finish();
+                updateHighScores(input.getText().toString().trim());
+                restartGame();
             }
         });
         AlertDialog dialog = builder.create();
         dialog.show();
-
-        Toast.makeText(getApplicationContext(), game.getNumPegsLeft() + " pegs left", Toast.LENGTH_LONG).show();
     }
 
-    public void boardClicked(View v) {
 
+    public void boardClicked(View v) {
         // TODO handle null pointer exceptions
         if (startCoord == null) {
             Coordinate coord = buttonIDToCoord.get(v.getId());
@@ -213,13 +232,8 @@ public class GameActivity extends AppCompatActivity {
         values.put("playerName", name);
         values.put("date", formattedDate);
         try {
-            if (rowid == null) {
                 cr.insert(DbContentProvider.CONTENT_URI, values);
                 Log.d(TAG, "Added " + name + " and " + formattedDate + " to database");
-            } else {
-                cr.update(DbContentProvider.CONTENT_URI.buildUpon().appendPath(Long.toString(rowid)).build(), values, null, null);
-                Log.d(TAG, "Added " + name + " and " + formattedDate + " to database");
-            }
         } catch (SQLException e) {
             Log.d(TAG, "Error updating database", e);
         }
