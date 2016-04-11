@@ -39,6 +39,9 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         if (savedInstanceState != null) {
             game = new Game((boolean[][])savedInstanceState.getSerializable("board"));
+            if(!game.checkForRemainingMoves()){
+                endGame();
+            }
         } else {
             initializeGame();
         }
