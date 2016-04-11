@@ -121,15 +121,10 @@ public class GameActivity extends AppCompatActivity {
     private void showTryAgainDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setMessage(R.string.game_dialog_tryAgain);
-        builder.setPositiveButton(R.string.game_yes, new DialogInterface.OnClickListener() {
+        builder.setMessage("Finished with " + game.getNumPegsLeft() + " pegs left");
+        builder.setPositiveButton(R.string.game_congrats_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 restartGame();
-            }
-        });
-        builder.setNegativeButton(R.string.game_no, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int id) {
-                finish();
             }
         });
         AlertDialog dialog = builder.create();
