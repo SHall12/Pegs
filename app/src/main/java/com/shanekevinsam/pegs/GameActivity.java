@@ -125,7 +125,7 @@ public class GameActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setMessage("Finished with " + game.getNumPegsLeft() + " pegs left");
-        builder.setPositiveButton(R.string.game_congrats_ok, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.game_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 restartGame();
             }
@@ -145,7 +145,7 @@ public class GameActivity extends AppCompatActivity {
         input.setText(sharedPref.getString("name",""));
         builder.setView(input);
 
-        builder.setPositiveButton(R.string.game_congrats_ok, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.game_ok, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
                 updateHighScores(input.getText().toString().trim());
                 restartGame();

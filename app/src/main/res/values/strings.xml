@@ -2,12 +2,8 @@
     <string name="app_name">Pegs</string>
 
     <string name="start">Start</string>
-    <string name="scores">Scores</string>
+    <string name="scores">Hall of Fame</string>
     <string name="settings">Settings</string>
-
-    <string name="name">Name</string>
-    <string name="score">Score</string>
-    <string name="date">Date</string>
 
     <string name="tst_illegal_move">Illegal Move</string>
     <string name="defaultPeg">1</string>
@@ -18,17 +14,13 @@
 
     <!-- Strings related to HighScores -->
 
-    <string name="score_activity_name">Name</string>
-    <string name="score_activity_date">Date</string>
+    <string name="name">Name</string>
+    <string name="date">Date</string>
 
     <!-- strings for end of game  -->
-    <string name="game_dialog_tryAgain">Try again?</string>
-    <string name="game_yes">Yes</string>
-    <string name="game_no">No</string>
-
     <string name="game_dialog_congrats">Congratulations!</string>
     <string name="game_congrats_message">Add your name to Hall of Fame</string>
-    <string name="game_congrats_ok">Ok</string>
+    <string name="game_ok">Ok</string>
 
     <!-- pref strings-->
     <string name="pref_header_game_peg">peg preferences</string>
@@ -36,7 +28,7 @@
     <string name="pref_header_high_score">clear highScores</string>
 
     <!-- preference strings   -->
-    <string name="pref_name_key">name</string>
+    <string name="pref_name_key">Name</string>
     <string name="pref_name_title">User name</string>
     <string name="pref_name_summary">A unique user name that no one else will be allowed to use</string>
     <string name="pref_name_default">kevin</string>
