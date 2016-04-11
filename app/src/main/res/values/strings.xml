@@ -27,8 +27,8 @@
     <string name="game_no">No</string>
 
     <string name="game_dialog_congrats">Congratulations!</string>
-    <string name="game_getName_header">Add your name to Hall of Fame</string>
-    <string name="game_getName">Ok</string>
+    <string name="game_congrats_message">Add your name to Hall of Fame</string>
+    <string name="game_congrats_ok">Ok</string>
 
     <!-- pref strings-->
     <string name="pref_header_game_peg">peg preferences</string>

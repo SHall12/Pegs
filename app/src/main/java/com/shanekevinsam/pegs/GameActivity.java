@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -109,17 +110,12 @@ public class GameActivity extends AppCompatActivity {
      * Open dialog with game info, prompt user to play again
      */
     private void endGame() {
-        if (game.getNumPegsLeft() == 1) {
-
-            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-            // TODO Prompt congrats message and text box for name, which autofills to name provided in settings
-            this.updateHighScores(sharedPref.getString("name",""));
-
-        }
         //TODO when the screen rotates the dialog box disappears, make that stop
-        showTryAgainDialog();
-
-        Toast.makeText(getApplicationContext(), game.getNumPegsLeft() + " pegs left", Toast.LENGTH_LONG).show();
+        if (game.getNumPegsLeft() == 1) {
+            showCongratsDialog();
+        } else {
+            showTryAgainDialog();
+        }
     }
 
     private void showTryAgainDialog(){
@@ -140,9 +136,29 @@ public class GameActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    private void showCongratsDialog(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+        builder.setTitle(R.string.game_dialog_congrats);
+        builder.setMessage(R.string.game_congrats_message);
+
+        final EditText input = new EditText(this);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(GameActivity.this);
+        input.setText(sharedPref.getString("name",""));
+        builder.setView(input);
+
+        builder.setPositiveButton(R.string.game_congrats_ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                updateHighScores(input.getText().toString().trim());
+                restartGame();
+            }
+        });
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
 
     public void boardClicked(View v) {
-
         // TODO handle null pointer exceptions
         if (startCoord == null) {
             Coordinate coord = buttonIDToCoord.get(v.getId());
