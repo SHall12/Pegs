@@ -19,9 +19,27 @@
     <!-- Strings related to HighScores -->
 
     <string name="score_activity_name">Name</string>
-
     <string name="score_activity_date">Date</string>
 
+    <!-- strings for end of game  -->
+    <string name="game_dialog_tryAgain">Try again?</string>
+    <string name="game_yes">Yes</string>
+    <string name="game_no">No</string>
+
+    <string name="game_dialog_congrats">Congratulations!</string>
+    <string name="game_getName_header">Add your name to Hall of Fame</string>
+    <string name="game_getName">Ok</string>
+
+    <!-- pref strings-->
+    <string name="pref_header_game_peg">peg preferences</string>
+    <string name="pref_header_game_sound">game sounds</string>
+    <string name="pref_header_high_score">clear highScores</string>
+
+    <!-- preference strings   -->
+    <string name="pref_name_key">name</string>
+    <string name="pref_name_title">User name</string>
+    <string name="pref_name_summary">A unique user name that no one else will be allowed to use</string>
+    <string name="pref_name_default">kevin</string>
 
 
     <!-- GOTTA DO SOMETHING WITH THIS -->
@@ -82,23 +100,5 @@
 
     <string name="pref_title_vibrate">Vibrate</string>
 
-
-    <!-- strings for end of game  -->
-    <string name="game_restart">Restart</string>
-    <string name="game_quit">Quit</string>
-    <string name="game_getName_header">Enter your name</string>
-    <string name="game_getName">ok</string>
-
-
-    <!-- pref strings-->
-    <string name="pref_header_game_peg">peg preferences</string>
-    <string name="pref_header_game_sound">game sounds</string>
-    <string name="pref_header_high_score">clear highScores</string>
-
-    <!-- preference strings   -->
-    <string name="pref_name_key">name</string>
-    <string name="pref_name_title">User name</string>
-    <string name="pref_name_summary">A unique user name that no one else will be allowed to use</string>
-    <string name="pref_name_default">kevin</string>
 
 </resources>
