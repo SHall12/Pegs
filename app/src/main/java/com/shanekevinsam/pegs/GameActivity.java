@@ -117,6 +117,12 @@ public class GameActivity extends AppCompatActivity {
 
         }
         //TODO when the screen rotates the dialog box disappears, make that stop
+        showTryAgainDialog();
+
+        Toast.makeText(getApplicationContext(), game.getNumPegsLeft() + " pegs left", Toast.LENGTH_LONG).show();
+    }
+
+    private void showTryAgainDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setPositiveButton(R.string.game_restart, new DialogInterface.OnClickListener() {
@@ -131,8 +137,6 @@ public class GameActivity extends AppCompatActivity {
         });
         AlertDialog dialog = builder.create();
         dialog.show();
-
-        Toast.makeText(getApplicationContext(), game.getNumPegsLeft() + " pegs left", Toast.LENGTH_LONG).show();
     }
 
     public void boardClicked(View v) {
