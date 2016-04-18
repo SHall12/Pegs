@@ -14,19 +14,32 @@
         android:text="@string/start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="startGameActivity"/>
+        android:onClick="startGameActivity"
+        android:layout_centerVertical="true" />
     <Button
         android:id="@+id/btn_seeScores"
         android:text="@string/scores"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_startGame"
-        android:onClick="startScoreActivity"/>
+        android:onClick="startScoreActivity"
+        android:layout_below="@+id/btn_startGame"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
     <Button
         android:id="@+id/btn_settings"
         android:text="@string/settings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_seeScores"
-        android:onClick="startSettingsActivity"/>
+        android:onClick="startSettingsActivity"
+        android:layout_below="@+id/btn_seeScores"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pegs"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+        android:id="@+id/imageView" />
 </RelativeLayout>
