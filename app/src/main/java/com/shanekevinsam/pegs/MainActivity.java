@@ -26,4 +26,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // TODO Settings: Name, Sound:[Music, Effects], Reset score, Starting Peg:Random, 1-4
+    // TODO Make background, title, buttons, peg board, peg images
 }

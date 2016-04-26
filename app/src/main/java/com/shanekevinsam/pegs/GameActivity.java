@@ -93,7 +93,6 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initializeMusic() {
-        // TODO use singleton pattern so only 1 mediaPlayer used at a time
         // TODO check shared preferences if music selected
         if (mediaPlayer == null) {
             mediaPlayer = MediaPlayer.create(this, R.raw.bensound_theelevatorbossanova);
@@ -113,7 +112,6 @@ public class GameActivity extends AppCompatActivity {
      * Open dialog with game info, prompt user to play again
      */
     private void endGame() {
-        //TODO when the screen rotates the dialog box disappears, make that stop
         if (game.getNumPegsLeft() == 1) {
             showCongratsDialog();
         } else {
@@ -192,7 +190,6 @@ public class GameActivity extends AppCompatActivity {
      * Updates views to represent board state
      */
     private void updateBoard() {
-        // TODO handle null pointer exceptions
         // For each peg in board, highlight boardView
         // Update number of pegs left
         for (int y = 0; y <= 4; ++y) {
