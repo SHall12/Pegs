@@ -181,6 +181,13 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
+    public void notBoardClicked(View v) {
+        if (startCoord != null){
+            findViewById(coordToButtonID.get(startCoord)).setEnabled(true);
+            startCoord = null;
+        }
+    }
+
     /**
      * Updates views to represent board state
      */
