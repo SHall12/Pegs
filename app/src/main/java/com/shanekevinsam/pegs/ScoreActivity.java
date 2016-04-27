@@ -63,10 +63,6 @@ public class ScoreActivity extends AppCompatActivity implements LoaderManager.Lo
 
     public void reset(View view)
     {
-
-
-
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         builder.setTitle(R.string.reset_header);
