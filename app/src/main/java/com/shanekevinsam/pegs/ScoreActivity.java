@@ -19,8 +19,6 @@ import android.widget.Toast;
 
 public class ScoreActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
     private SimpleCursorAdapter mAdapter;
-    SQLiteDatabase theDB;
-    Long rowid;
     long currentRow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +27,6 @@ public class ScoreActivity extends AppCompatActivity implements LoaderManager.Lo
         setContentView(R.layout.activity_score);
         mAdapter = new SimpleCursorAdapter(this, R.layout.list_item, null,
                 new String[]{"playerName","date"},new int[]{R.id.score_name_info,R.id.score_date_info}, 0);
-
 
         ListView listView = (ListView) findViewById(R.id.Score_list);
         listView.setAdapter(mAdapter);

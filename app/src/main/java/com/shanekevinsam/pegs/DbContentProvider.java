@@ -2,6 +2,7 @@ package com.shanekevinsam.pegs;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -26,6 +27,7 @@ public class DbContentProvider extends ContentProvider {
         uriMatcher.addURI(AUTHORITY, BASE_PATH + "/#", GAMES_ID);
     }
 
+
     @Override
     public boolean onCreate() {
         theDB = HighScoreDB.getInstance(getContext());
@@ -39,6 +41,12 @@ public class DbContentProvider extends ContentProvider {
         else
             return selection + " AND _ID = " + id;
     }
+
+    public void onReset(Context context)
+    {
+        theDB.onUpgrade(context);
+    }
+
 
     @Override
     public Cursor query(@NonNull Uri uri, String[] projection, String selection,

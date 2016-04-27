@@ -1,20 +1,48 @@
-<preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- These settings headers are only used on tablets. -->
 
-    <header
-        android:fragment="com.shanekevinsam.pegs.SettingsActivity$gamePegPreferenceFragment"
+
+    <EditTextPreference
+        android:key="@string/pref_name_key"
+        android:title="@string/pref_name_title"
+        android:summary="@string/pref_name_summary"
+        android:defaultValue="@string/pref_name_default" />
+
+    <CheckBoxPreference
+        android:key="@string/pref_music_key"
+        android:title="@string/pref_music"
+        android:summary="@string/pref_music_summary"
+        android:defaultValue="true" />
+    <CheckBoxPreference
+        android:key="@string/pref_sound_effects_key"
+        android:title="@string/pref_sound_effects"
+        android:summary="@string/pref_sound_effects_summary"
+        android:defaultValue="true" />
+    <Preference
+        android:title="@string/reset_high_score"
+        android:summary="@string/reset_high_score_summary"
+        android:key = "@string/reset_key"
+        android:defaultValue="false"
+
+
+        />
+
+  <!-- <header
+
         android:icon="@drawable/ic_game_peg"
         android:title="@string/pref_header_game_peg" />
 
-    <header
-        android:fragment="com.shanekevinsam.pegs.SettingsActivity$gameSoundPreferenceFragment"
-        android:icon="@drawable/ic_game_sounds"
-        android:title="@string/pref_header_game_sound" />
 
-    <header
-        android:fragment="com.shanekevinsam.pegs.SettingsActivity$highScorePreferenceFragment"
-        android:icon="@drawable/ic_high_score"
-        android:title="@string/pref_header_high_score" />
+      <header
 
-</preference-headers>
+          android:icon="@drawable/ic_game_sounds"
+          android:title="@string/pref_header_game_sound" />
+      <header
+
+          android:icon="@drawable/ic_high_score"
+          android:title="@string/pref_header_high_score" />
+          -->
+
+</PreferenceScreen>

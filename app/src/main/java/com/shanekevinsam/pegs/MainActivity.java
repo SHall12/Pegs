@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     public void startSettingsActivity(View v){
         startActivity(new Intent(this, SettingsActivity.class));
     }
-
     public void startScoreActivity(View v){
         startActivity(new Intent(this, ScoreActivity.class));
     }

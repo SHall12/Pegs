@@ -21,6 +21,10 @@ public class HighScoreDB  extends SQLiteOpenHelper {
     // Only way to instantiate this class is through getInstance!
     private HighScoreDB(Context context) { super(context,DATABASE_NAME,null,DATABASE_VERSION);
     }
+    public int version()
+    {
+        return DATABASE_VERSION;
+    }
 
     public static synchronized HighScoreDB getInstance(Context context) {
         if (theDb == null) {
@@ -48,6 +52,15 @@ public class HighScoreDB  extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_ENTRIES);
         onCreate(db);
     }
+    public void onUpgrade(Context context)
+    {
+       theDb = new HighScoreDB(context);
+
+
+    }
+
+
+
 
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -57,8 +70,6 @@ public class HighScoreDB  extends SQLiteOpenHelper {
     public void getWritableDatabase(OnDBReadyListener listener) {
         new OpenDbAsyncTask().execute(listener);
     }
-
-
     private class OpenDbAsyncTask extends AsyncTask<OnDBReadyListener, Void, SQLiteDatabase> {
         OnDBReadyListener listener;
 
