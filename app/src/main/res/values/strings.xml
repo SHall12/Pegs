@@ -110,4 +110,11 @@
     <string name="reset_key">reset</string>
     <string name="reset_onClick">onResetClick </string>
 
+    <string name="reset_yes">Yes</string>
+    <string name="reset_no">No</string>
+
+    <string name="reset_dialog">Are you sure</string>
+    <string name="reset_header">High Score reset</string>
+
+
 </resources>
