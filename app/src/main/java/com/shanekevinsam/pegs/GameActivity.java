@@ -93,11 +93,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initializeMusic() {
-        // TODO use singleton pattern so only 1 mediaPlayer used at a time
-        // TODO check shared preferences if music selected
         if (mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.bensound_theelevatorbossanova);
-            mediaPlayer.start();
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(GameActivity.this);
+            if(sharedPref.getBoolean(getString(R.string.pref_music_key), true )){
+                mediaPlayer = MediaPlayer.create(this, R.raw.bensound_theelevatorbossanova);
+                mediaPlayer.start();
+            }
         }
     }
 
@@ -119,6 +120,7 @@ public class GameActivity extends AppCompatActivity {
         } else {
             showTryAgainDialog();
         }
+        initializeMusic();
     }
 
     private void showTryAgainDialog(){
