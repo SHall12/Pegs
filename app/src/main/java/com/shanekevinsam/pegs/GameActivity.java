@@ -1,14 +1,18 @@
 package com.shanekevinsam.pegs;
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.SQLException;
+import android.media.AudioAttributes;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +38,7 @@ public class GameActivity extends AppCompatActivity {
     private Coordinate endCoord;
     private MediaPlayer mediaPlayer = null;
     private SoundPool soundPool = null;
+    private int popId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +55,7 @@ public class GameActivity extends AppCompatActivity {
         initializeMaps();
         updateBoard();
         initializeMusic();
+        initializeSound();
         // TODO Set listener to play sound on successful moves
     }
 
@@ -102,6 +108,34 @@ public class GameActivity extends AppCompatActivity {
                 mediaPlayer.start();
             }
         }
+    }
+
+    private void initializeSound(){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(GameActivity.this);
+        if(sharedPref.getBoolean(getString(R.string.pref_sound_effects_key), true )) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                createNewSoundPool();
+            } else {
+                createOldSoundPool();
+            }
+            popId = soundPool.load(this, R.raw.pop, 1);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    protected void createNewSoundPool(){
+        AudioAttributes attributes = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+        soundPool = new SoundPool.Builder()
+                .setAudioAttributes(attributes)
+                .build();
+    }
+
+    @SuppressWarnings("deprecation")
+    protected void createOldSoundPool(){
+        soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC,0);
     }
 
     /**
@@ -171,7 +205,9 @@ public class GameActivity extends AppCompatActivity {
             endCoord = buttonIDToCoord.get(v.getId());
             if (game.move(startCoord, endCoord)) {
                 updateBoard();
-                // TODO Make pop sound
+                if (soundPool != null) {
+                    soundPool.play(popId, 1, 1, 0, 0, 1);
+                }
                 if (!game.checkForRemainingMoves()) {
                     endGame();
                 }
