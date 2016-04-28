@@ -10,7 +10,7 @@ import java.util.Random;
  * Created by me on 4/6/16.
  */
 public class Game {
-    private static final String TAG = "Game";
+    private final String TAG = "Game";
     private Board board = null;
 
     /**

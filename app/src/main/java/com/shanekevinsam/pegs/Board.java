@@ -19,7 +19,7 @@ public class Board {
      */
     private boolean[][] board;
     private int pegsLeft;
-    private static String TAG = "Board";
+    private String TAG = "Board";
 
     /**Initialize board with given coord's peg removed
      *

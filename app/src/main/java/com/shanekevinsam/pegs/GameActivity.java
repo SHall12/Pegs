@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class GameActivity extends AppCompatActivity {
 
-    private static String TAG = "GameActivity";
+    private String TAG = "GameActivity";
     private Game game;
     private Map<Coordinate, Integer> coordToButtonID;
     private Map<Integer, Coordinate> buttonIDToCoord;
@@ -56,7 +56,6 @@ public class GameActivity extends AppCompatActivity {
         updateBoard();
         initializeMusic();
         initializeSound();
-        // TODO Set listener to play sound on successful moves
     }
 
     @Override
@@ -74,6 +73,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         initializeMusic();
+        initializeSound();
     }
 
     @Override
@@ -105,6 +105,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void initializeGame() {
         // TODO Check settings for default peg to remove
+        game = null;
         game = new Game();
     }
 
