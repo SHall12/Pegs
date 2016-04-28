@@ -83,6 +83,10 @@ public class GameActivity extends AppCompatActivity {
             mediaPlayer.release();
             mediaPlayer = null;
         }
+        if (soundPool != null){
+            soundPool.release();
+            soundPool = null;
+        }
     }
 
     @Override
@@ -92,6 +96,10 @@ public class GameActivity extends AppCompatActivity {
         if (mediaPlayer != null) {
             mediaPlayer.release();
             mediaPlayer = null;
+        }
+        if (soundPool != null){
+            soundPool.release();
+            soundPool = null;
         }
     }
 
