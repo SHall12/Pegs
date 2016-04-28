@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.SQLException;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -31,7 +32,8 @@ public class GameActivity extends AppCompatActivity {
     private Map<Integer, Coordinate> buttonIDToCoord;
     private Coordinate startCoord;
     private Coordinate endCoord;
-    private static MediaPlayer mediaPlayer = null;
+    private MediaPlayer mediaPlayer = null;
+    private SoundPool soundPool = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,10 +95,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initializeMusic() {
-        // TODO check shared preferences if music selected
         if (mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(this, R.raw.bensound_theelevatorbossanova);
-            mediaPlayer.start();
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(GameActivity.this);
+            if(sharedPref.getBoolean(getString(R.string.pref_music_key), true )){
+                mediaPlayer = MediaPlayer.create(this, R.raw.bensound_theelevatorbossanova);
+                mediaPlayer.start();
+            }
         }
     }
 
@@ -117,6 +121,7 @@ public class GameActivity extends AppCompatActivity {
         } else {
             showTryAgainDialog();
         }
+        initializeMusic();
     }
 
     private void showTryAgainDialog(){

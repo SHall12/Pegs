@@ -94,4 +94,27 @@
     <string name="pegs_title">Pegs title</string>
 
 
+    <string name="pref_music">music </string>
+    <string name="pref_music_summary">turns the music on and off</string>
+    <string name="pref_music_key">music </string>
+
+
+
+    <string name="pref_sound_effects">Sound Effects </string>
+    <string name="pref_sound_effects_summary">Turns the sound effects on and off</string>
+    <string name="pref_sound_effects_key">soundEffects </string>
+
+
+    <string name="reset_high_score">HighScore</string>
+    <string name="reset_high_score_summary">Reset</string>
+    <string name="reset_key">reset</string>
+    <string name="reset_onClick">onResetClick </string>
+
+    <string name="reset_yes">Yes</string>
+    <string name="reset_no">No</string>
+
+    <string name="reset_dialog">Are you sure</string>
+    <string name="reset_header">High Score reset</string>
+
+
 </resources>
