@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#C1F3FC"
     tools:context="com.shanekevinsam.pegs.MainActivity">
 
     <Button
@@ -38,10 +39,10 @@
 
     <ImageView
         android:id="@+id/imageView"
-
+        android:src="@drawable/pegs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/pegs_title" />
+        android:contentDescription="@string/pegs_title"
+        android:layout_above="@+id/btn_startGame"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
