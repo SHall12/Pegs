@@ -13,29 +13,35 @@
     <Button
         android:id="@+id/btn_startGame"
         android:text="@string/start"
+        android:drawableLeft="@drawable/play2"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:onClick="startGameActivity"
-        android:layout_centerVertical="true"
+        android:layout_above="@+id/btn_seeScores"
         android:layout_centerHorizontal="true" />
     <Button
         android:id="@+id/btn_seeScores"
         android:text="@string/scores"
+        android:drawableLeft="@drawable/star2"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:onClick="startScoreActivity"
-        android:layout_below="@+id/btn_startGame"
+        android:layout_above="@+id/btn_settings"
         android:layout_alignLeft="@+id/btn_startGame"
         android:layout_alignStart="@+id/btn_startGame" />
     <Button
         android:id="@+id/btn_settings"
         android:text="@string/settings"
+        android:drawableLeft="@drawable/settings2"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:onClick="startSettingsActivity"
-        android:layout_below="@+id/btn_seeScores"
+        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/btn_seeScores"
-        android:layout_alignStart="@+id/btn_seeScores" />
+        android:layout_alignStart="@+id/btn_seeScores"
+        android:layout_marginBottom="45dp" />
+
+
 
     <ImageView
         android:id="@+id/imageView"
@@ -43,6 +49,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/pegs_title"
+        android:layout_marginBottom="47dp"
         android:layout_above="@+id/btn_startGame"
         android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
