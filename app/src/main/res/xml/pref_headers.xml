@@ -7,24 +7,17 @@
     <EditTextPreference
         android:key="@string/pref_name_key"
         android:title="@string/pref_name_title"
-        android:summary="@string/pref_name_summary"
         android:defaultValue="@string/pref_name_default" />
 
     <CheckBoxPreference
         android:key="@string/pref_music_key"
         android:title="@string/pref_music"
-        android:summary="@string/pref_music_summary"
         android:defaultValue="true" />
     <CheckBoxPreference
         android:key="@string/pref_sound_effects_key"
         android:title="@string/pref_sound_effects"
-        android:summary="@string/pref_sound_effects_summary"
+
         android:defaultValue="true" />
-    <Preference
-        android:title="@string/reset_high_score"
-        android:summary="@string/reset_high_score_summary"
-        android:key = "@string/reset_key"
-        android:defaultValue="false"
 
 
         />
