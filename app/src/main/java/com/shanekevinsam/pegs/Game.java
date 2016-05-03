@@ -106,7 +106,8 @@ public class Game {
         } else if(start.getX() == end.getX() || start.getY() == end.getY()){
             return Math.abs(start.getX() - end.getX()) + Math.abs(start.getY() - end.getY()) == 2;
         } else {
-            return Math.abs(start.getX() - end.getX()) + Math.abs(start.getY() - end.getY()) == 4;
+            return Math.abs(start.getX() - end.getX()) + Math.abs(start.getY() - end.getY()) == 4
+                    && Math.abs(start.getX() + start.getY()) - Math.abs(end.getX() + end.getY()) == 0;
         }
     }
 
