@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.SQLException;
+import android.graphics.drawable.Drawable;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -20,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,9 @@ public class GameActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer = null;
     private SoundPool soundPool = null;
     private int popId;
+    private Drawable drawEmptyPeg;
+    private Drawable drawSelectedPeg;
+    private Drawable drawPeg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,15 @@ public class GameActivity extends AppCompatActivity {
             }
         } else {
             initializeGame();
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            drawEmptyPeg = getResources().getDrawable(R.drawable.emptypeg, getApplicationContext().getTheme());
+            drawSelectedPeg = getResources().getDrawable(R.drawable.selectedpeg, getApplicationContext().getTheme());
+            drawPeg = getResources().getDrawable(R.drawable.otherpeg, getApplicationContext().getTheme());
+        } else {
+            drawEmptyPeg = getResources().getDrawable(R.drawable.emptypeg);
+            drawSelectedPeg = getResources().getDrawable(R.drawable.selectedpeg);
+            drawPeg = getResources().getDrawable(R.drawable.otherpeg);
         }
         initializeMaps();
         updateBoard();
@@ -209,6 +223,7 @@ public class GameActivity extends AppCompatActivity {
             if (game.isPegAt(coord)) {
                 startCoord = coord;
                 (findViewById(v.getId())).setEnabled(false);
+                ((ImageView) findViewById(coordToButtonID.get(coord))).setImageDrawable(drawSelectedPeg);
             }
         } else {
             endCoord = buttonIDToCoord.get(v.getId());
@@ -222,8 +237,10 @@ public class GameActivity extends AppCompatActivity {
                 }
             } else {
                 illegalMove();
+                ((ImageView) findViewById(coordToButtonID.get(startCoord))).setImageDrawable(drawPeg);
             }
             findViewById(coordToButtonID.get(startCoord)).setEnabled(true);
+
             startCoord = null;
             endCoord = null;
         }
@@ -232,6 +249,7 @@ public class GameActivity extends AppCompatActivity {
     public void notBoardClicked(View v) {
         if (startCoord != null){
             findViewById(coordToButtonID.get(startCoord)).setEnabled(true);
+            ((ImageView) findViewById(coordToButtonID.get(startCoord))).setImageDrawable(drawPeg);
             startCoord = null;
         }
     }
@@ -246,9 +264,9 @@ public class GameActivity extends AppCompatActivity {
             for (int x = 0; x <= 4 - y; ++x) {
                 Coordinate coord = new Coordinate(x, y);
                 if (game.isPegAt(coord)) {
-                    ((Button)findViewById(coordToButtonID.get(coord))).setText("P");
+                    ((ImageView) findViewById(coordToButtonID.get(coord))).setImageDrawable(drawPeg);
                 } else {
-                    ((Button)findViewById(coordToButtonID.get(coord))).setText("");
+                    ((ImageView) findViewById(coordToButtonID.get(coord))).setImageDrawable(drawEmptyPeg);
                 }
             }
         }
